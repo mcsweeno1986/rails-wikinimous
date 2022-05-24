@@ -1,0 +1,21 @@
+<h1>Editing Article</h1>
+
+<%= form_for(@article) do |f| %>
+  <div>
+  <h6><%= f.label :title %></h4>
+  </div>
+  <div>
+  <%= f.text_field :title %>
+  </div>
+
+  <div>
+  <h6><%= f.label :content %></h6>
+  </div>
+  <div>
+  <%= f.text_field :content %>
+  </div>
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Show", article_path %>
+<%= link_to "Back", articles_path %>

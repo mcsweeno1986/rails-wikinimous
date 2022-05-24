@@ -13,8 +13,13 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.save
-    redirect_to article_path(@article)
+    if @article.save
+      flash[:notice] = 'Article saved!'
+      redirect_to article_path(@article)
+    else
+      flash[:error] = 'Something went wrong'
+      render :new
+    end
   end
 
   def edit
@@ -23,8 +28,13 @@ class ArticlesController < ApplicationController
 
   def update
     @article = Article.find(params[:id])
-    @article.update(article_params)
-    redirect_to article_path(@article)
+    if @article.update(article_params)
+      flash[:notice] = 'Article updated!'
+      redirect_to article_path(@article)
+    else
+      flash[:error] = 'Something went wrong'
+      render :new
+    end
   end
 
   def destroy
